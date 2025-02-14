@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-top {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+        .navbar-top .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .navbar-top .navbar-text {
+            font-size: 14px;
+            color: #777;
+        }
+        .navbar-bottom {
+            background-color: #003366;
+        }
+        .navbar-bottom .nav-link {
+            color: #fff !important;
+        }
+        .dashboard-container {
+            margin-top: 20px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .dashboard-header {
+            text-align: center;
+        }
+        .dashboard-header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .dashboard-header p {
+            color: #777;
+        }
+        .dashboard-content {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .dashboard-section {
+            background-color: #faf8f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin-right: 20px;
+        }
+        .dashboard-section:last-child {
+            margin-right: 0;
+        }
+        .section-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .course-table {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .course-table th, .course-table td {
+            padding: 10px;
+            text-align: center;
+        }
+        .course-table th {
+            background-color: #003366;
+            color: #fff;
+        }
+        .course-table td {
+            border-bottom: 1px solid #ddd;
+        }
+        .course-table tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+   <!-- Top Navigation Bar -->
+   <nav class="navbar navbar-expand-lg navbar-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="nstu.jpg" width="30" height="30" alt="University Logo">
+            NstuAcademia
+        </a>
+        <span class="navbar-text">
+            A Hassle Free System for University Students
+        </span>
+    </div>
+</nav>
+
+<!-- Bottom Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-bottom">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Course Registration Notice</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Hall Seat Notice</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Departments</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+    <div class="container dashboard-container">
+        <div class="dashboard-header">
+            <img src="arpita.jpg" alt="Profile Image" class="profile-image">
+            <h1>Welcome back, Arpita</h1>
+            
+        </div>
+        <div class="dashboard-content">
+            <div class="dashboard-section">
+                <div class="section-header">Your Information</div>
+                <div class="text-center">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th scope="row"><i class="fas fa-user"></i> Students's Name</th>
+                                <td>Arpita Majumder</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="fas fa-user"></i> Father's Name</th>
+                                <td>Uttam Kumer Shill</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="fas fa-user"></i> Student Id :</th>
+                                <td>BFH2125015F</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="fas fa-home"></i> Departments</th>
+                                <td>IIT(Software Enginnering)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="fas fa-user"></i> Course Coordinator</th>
+                                <td>Dipok Chandra Das</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"><i class="fas fa-calendar-alt"></i> Session</th>
+                                <td>2020-21</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="fas fa-home"></i> Hall Name</th>
+                                <td>Bangamata Sheikh fazilatunnesa Mujib Hall</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><i class="fas fa-door-closed"></i> Seat Number</th>
+                                <td>Not Allocated</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="dashboard-section">
+                
+                <div class="section-header">Course Registration Details</div>
+                <table class="table course-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Term</th>
+                            <th>Status</th>
+                            <th>Credit</th>
+                            <th>CGPA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">1</td>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">2</td>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">3</td>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">4</td>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

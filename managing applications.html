@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Hall Applications</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .running-text {
+            animation: runningText 15s linear infinite;
+        }
+
+        @keyframes runningText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center py-4 px-6">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="noakhali_science_and_technology_university_logo.jpeg" alt="University Logo" class="w-16 h-auto">
+                <div class="ml-2">
+                    <h1 class="text-xl font-bold">NstuAcademia</h1>
+                    <p class="text-sm text-gray-600 mt-1">
+                        <span class="running-text inline-block whitespace-nowrap overflow-hidden">
+                            A Hassle-Free System for University Students
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center md:items-end text-gray-600">
+                <p>Phone: 02334496522</p>
+                <p>Fax: 02334496523</p>
+                <p>Email: registrar@office.nstu.edu.bd</p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="bg-university-blue">
+        <div class="container mx-auto flex flex-wrap justify-between items-center py-3 px-6">
+            <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 w-full md:w-auto">
+                <li><a href="#" class="text-white hover:text-gray-300">Home</a></li>
+                <li><a href="#" class="text-white hover:text-gray-300">About Us</a></li>
+                <li><a href="#" class="text-white hover:text-gray-300">Course Registration Notice</a></li>
+                <li><a href="#" class="text-white hover:text-gray-300">Hall Seat Notice</a></li>
+                <li><a href="#" class="text-white hover:text-gray-300">Departments</a></li>
+                <li><a href="#" class="text-white hover:text-gray-300">Events</a></li>
+                <li><a href="#" class="text-white hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-10 px-6">
+        <button id="show-details" class="bg-university-darkblue text-white px-4 py-2 rounded-lg shadow-md hover:bg-university-blue-hover">Show Application Details</button>
+
+        <div id="details-table" class="hidden mt-6">
+            <table class="table-auto w-full bg-white rounded-lg shadow-lg overflow-hidden">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="px-4 py-2">Application No</th>
+                        <th class="px-4 py-2">Approve</th>
+                        <th class="px-4 py-2">Decline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="bg-university-blue text-white py-6 mt-10">
+        <div class="container mx-auto text-center">
+            <p class="mb-4">&copy; 2024 NstuAcademia. All rights reserved.</p>
+            <ul class="flex justify-center space-x-6">
+                <li><a href="#" class="hover:text-gray-300">Privacy Policy</a></li>
+                <li><a href="#" class="hover:text-gray-300">Terms of Service</a></li>
+                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('show-details').addEventListener('click', function () {
+            const detailsTable = document.getElementById('details-table');
+            const tbody = detailsTable.querySelector('tbody');
+
+            if (detailsTable.classList.contains('hidden')) {
+                tbody.innerHTML = '';
+                for (let i = 101; i <= 110; i++) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="border px-4 py-2">
+                            <a href="#application-${i}" class="text-blue-500 hover:underline">Application ${i}</a>
+                        </td>
+                        <td class="border px-4 py-2">
+                            <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">Approve</button>
+                        </td>
+                        <td class="border px-4 py-2">
+                            <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Decline</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                }
+                detailsTable.classList.remove('hidden');
+            } else {
+                detailsTable.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

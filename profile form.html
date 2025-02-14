@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-top {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+        .navbar-top .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .navbar-top .navbar-text {
+            font-size: 14px;
+            color: #777;
+        }
+        .navbar-bottom {
+            background-color: #003366;
+        }
+        .navbar-bottom .nav-link {
+            color: #fff !important;
+        }
+        .form-container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #85c1f6;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .subtitle{
+            text-align: center;
+            color: #0b0b0b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="nstu.jpg" width="30" height="30" alt="University Logo">
+                NstuAcademia
+            </a>
+            <span class="navbar-text">
+                A Hassle Free System for University Students
+            </span>
+        </div>
+    </nav>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-bottom">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Course Registration Notice</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Hall Seat Notice</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Departments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="form-container">
+                    <h2 class="text-center">Student Profile Form</h2>
+                    <h3 class="subtitle">Fill up the form</h3>
+                    <form id="studentForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="studentName"><i class="fas fa-user"></i> Student Name</label>
+                            <input type="text" class="form-control" id="studentName" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fatherName"><i class="fas fa-user"></i> Father's Name</label>
+                            <input type="text" class="form-control" id="fatherName" placeholder="Enter father's name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="coursecordinator"><i class="fas fa-user"></i> Course Coordinator's Name</label>
+                            <input type="text" class="form-control" id="course coordinator name" placeholder="Enter Course Coordinator's name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Student Id"><i class="fas fa-user"></i> Student's Id</label>
+                            <input type="number" class="form-control" id="student id" placeholder="Enter your id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="session"><i class="fas fa-calendar-alt"></i> Session</label>
+                            <input type="text" class="form-control" id="session" placeholder="Enter session" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="department"><i class="fas fa-building"></i> Department</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="department" placeholder="Enter department" required>
+                                <div class="input-group-append">
+                                    <select class="form-control">
+                                        <option value="">Select Department</option>
+                                        <option value="department1">Cste</option>
+                                        <option value="department2">IIT</option>
+                                        <option value="department3">ICE</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="hallName"><i class="fas fa-home"></i> Hall Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="hallName" placeholder="Enter hall name" required>
+                                <div class="input-group-append">
+                                    <select class="form-control">
+                                        <option value="">Select Hall Name</option>
+                                        <option value="hall1">Salam Hall</option>
+                                        <option value="hall2">Malek Hall</option>
+                                        <option value="hall3">Bibi Khadija</option>
+                                        <option value="hall4">Bangamata</option>
+                                        <option value="hall4">Bangabandhu</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="seatNumber"><i class="fas fa-door-closed"></i> Seat Number(Write not allocated otherwise)</label>
+                            <input type="text" class="form-control" id="hallNumber" placeholder="Enter hall number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="profileImage"><i class="fas fa-image"></i> Upload Profile Image</label>
+                            <input type="file" class="form-control-file" id="profileImage" required>
+                        </div>
+                        <button type="submit" class="btn btn-custom btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('studentForm');
+            const fields = form.querySelectorAll('input[required]');
+            
+            fields.forEach((field) => {
+                field.addEventListener('blur', function() {
+                    if (!field.checkValidity()) {
+                        alert('Please fill this field first.');
+                        field.focus();
+                    }
+                });
+
+                field.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        if (!field.checkValidity()) {
+                            alert('Please fill this field first.');
+                            event.preventDefault();
+                            field.focus();
+                        }
+                    }
+                });
+            });
+
+            form.addEventListener('submit', function(event) {
+                let allValid = true;
+                fields.forEach(field => {
+                    if (!field.checkValidity()) {
+                        alert('Please fill all required fields.');
+                        field.focus();
+                        allValid = false;
+                        event.preventDefault();
+                    }
+                });
+                if (allValid) {
+                    alert('Form submitted successfully!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?php
+// Start the session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Check if the teacher is logged in
+if (!isset($_SESSION['teacher_id']) || !isset($_SESSION['teacher_name'])) {
+    // Redirect to the login page if not authenticated
+    header("Location: login(teacher).php");
+    exit();
+}
+?>
