@@ -65,9 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($result->num_rows === 1) {
                 $user = $result->fetch_assoc();
                 if (password_verify($password, $user['password'])) {
-                    $_SESSION['user_id']    = $user['admin_id']; // For session_check expectation.
+                    $_SESSION['user_id']    = $user['admin_id'];
                     $_SESSION['user_type']  = 'hall_admin';
-                    $_SESSION['hall_name']  = $user['hall_name']; // Optional.
+                    $_SESSION['hall_name']  = $user['hall_name'];
                     header("Location: dashboard.php");
                     exit();
                 } else {
@@ -77,12 +77,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $error = "Invalid Admin ID or Password.";
             }
             $stmt->close();
+        } elseif ($userType === 'department_head') {
+            // For Department Head, we assume the identifier is the Department Name.
+            $stmt = $conn->prepare("SELECT id, department_name, password FROM dept_head WHERE department_name = ? LIMIT 1");
+            $stmt->bind_param("s", $identifier);  // Assuming the department name is passed as identifier
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows === 1) {
+                $user = $result->fetch_assoc();
+                if (password_verify($password, $user['password'])) {
+                    $_SESSION['department_head_id'] = $user['id'];
+                    $_SESSION['user_type'] = 'department_head';
+                    header("Location: dashboard.php");
+                    exit();
+                } else {
+                    $error = "Invalid Department Name or Password.";
+                }
+            } else {
+                $error = "Invalid Department Name or Password.";
+            }
+            $stmt->close();
         } else {
             $error = "Invalid user type selected.";
         }
     }
 }
+
+// Query to fetch department names for Department Head dropdown
+$stmt = $conn->prepare("SELECT Department_id, Department_Name FROM department");
+$stmt->execute();
+$departments = $stmt->get_result();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,8 +116,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - NSTU Academia</title>
+
     <!-- Include Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+
     <style>
         /* Apply a gradient background to the body */
         body {
@@ -125,6 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             animation: fadeIn 0.5s ease-in-out;
         }
     </style>
+
     <script>
         // Update the identifier field label and placeholder based on the user type.
         function updateIdentifierLabel() {
@@ -140,24 +169,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else if (userType === 'hall_admin') {
                 identifierLabel.textContent = "Admin ID";
                 identifierInput.placeholder = "Enter your Admin ID";
+            } else if (userType === 'department_head') {
+                identifierLabel.textContent = "Department Name";
+                identifierInput.placeholder = "Select your Department";
             } else {
                 identifierLabel.textContent = "Identifier";
                 identifierInput.placeholder = "Enter your Identifier";
             }
         }
     </script>
+
 </head>
 
 <body class="flex items-center justify-center min-h-screen">
     <div class="w-full max-w-md p-8 mx-4 form-container">
         <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Login Portal</h2>
+
         <!-- Display any error messages -->
         <?php if (!empty($error)): ?>
             <div class="bg-red-100 text-red-600 p-4 rounded mb-6">
                 <?= htmlspecialchars($error) ?>
             </div>
         <?php endif; ?>
+
         <form method="POST" class="space-y-6" id="loginForm">
+
             <!-- User Type Selection -->
             <div>
                 <label for="userType" class="block text-sm font-medium text-gray-700 mb-2">Select User Type</label>
@@ -166,8 +202,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="student" <?= (isset($_POST['userType']) && $_POST['userType'] === 'student') ? 'selected' : '' ?>>Student</option>
                     <option value="teacher" <?= (isset($_POST['userType']) && $_POST['userType'] === 'teacher') ? 'selected' : '' ?>>Teacher</option>
                     <option value="hall_admin" <?= (isset($_POST['userType']) && $_POST['userType'] === 'hall_admin') ? 'selected' : '' ?>>Hall Administration</option>
+                    <option value="department_head" <?= (isset($_POST['userType']) && $_POST['userType'] === 'department_head') ? 'selected' : '' ?>>Department Head</option>
                 </select>
             </div>
+
             <!-- Dynamic Identifier Input -->
             <div>
                 <label for="userIdentifier" id="identifierLabel" class="block text-sm font-medium text-gray-700 mb-2">
@@ -177,12 +215,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     value="<?= isset($_POST['userIdentifier']) ? htmlspecialchars($_POST['userIdentifier']) : '' ?>"
                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200" />
             </div>
+
             <!-- Password Input -->
             <div>
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                 <input type="password" id="password" name="password" required placeholder="Enter your password"
                     class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200" />
             </div>
+
             <!-- Submit Button -->
             <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-200">
                 Log In
@@ -192,6 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
 <?php
 // Close the database connection.
 $conn->close();

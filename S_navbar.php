@@ -10,8 +10,8 @@ if (isset($_SESSION['student_id'])) {
     $role = 'teacher';
 } elseif (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'hall_admin') {
     $role = 'hall_admin';
-} elseif (isset($_SESSION['director_id'])) {
-    $role = 'director';
+} elseif (isset($_SESSION['department_head_id'])) {
+    $role = 'department_head';
 }
 
 $isLoggedIn = !empty($role);
@@ -212,7 +212,7 @@ $name = $_SESSION['name'] ?? 'User'; // Use a proper name if available
                         <li><a href="ManageApplication.php" class="nav-link" data-id="manage-applications"><i class="fas fa-tasks mr-2"></i>Manage Applications</a></li>
                         <li><a href="IssueBoardingCard.php" class="nav-link" data-id="issue-boarding-card"><i class="fas fa-id-card mr-2"></i>Issue Boarding Card</a></li>
                         <li><a href="About.php" class="nav-link" data-id="about"><i class="fas fa-info-circle mr-2"></i>About</a></li>
-                    <?php elseif ($role === 'director'): ?>
+                    <?php elseif ($role === 'department_head'): ?>
                         <li><a href="director_dashboard.php" class="nav-link" data-id="dashboard"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a></li>
                         <li><a href="manage_registration.php" class="nav-link" data-id="verify-registrations"><i class="fas fa-check-circle mr-2"></i>Verify Registrations</a></li>
                         <li><a href="mark_attendance.php" class="nav-link" data-id="mark-attendance"><i class="fas fa-check-circle mr-2"></i>Attendance</a></li>

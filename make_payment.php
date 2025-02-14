@@ -25,9 +25,17 @@ $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
     echo "<div class='container mx-auto mt-10 text-center'>
-            <h2 class='text-2xl font-bold'>No Pending Payment Due</h2>
-            <p>You have no incomplete payments.</p>
-          </div>";
+        <h2 class='text-3xl font-bold text-gray-800'>No Pending Payment Due</h2>
+        <p class='text-lg text-gray-600'>You have no incomplete payments.</p>
+
+        <!-- Button to download Admit Card with Icon -->
+        <a href='admit_pdf.php' class='mt-6 inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105'>
+            <!-- Font Awesome Download Icon -->
+            <i class='fas fa-download mr-2'></i> 
+            <span>Download Admit Card</span>
+        </a>
+      </div>";
+
     exit;
 }
 

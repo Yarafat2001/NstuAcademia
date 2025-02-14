@@ -42,12 +42,6 @@ $stmt->bind_param("s", $teacher_department);
 $stmt->execute();
 $result = $stmt->get_result();
 
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -117,14 +111,16 @@ $result = $stmt->get_result();
         </table>
 
         <!-- Modal for viewing registration details -->
-        <div id="registrationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
-            <div class="bg-white rounded shadow-lg w-11/12 md:w-1/2 p-6">
-                <div class="flex justify-end">
-                    <button class="text-red-500" onclick="closeModal()">Close</button>
-                </div>
-                <div id="registrationDetails" class="mt-4"></div>
-            </div>
+       <!-- Modal for viewing registration details -->
+<div id="registrationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center" style="z-index: 9999;">
+    <div class="bg-white rounded shadow-lg w-11/12 md:w-1/2 p-6">
+        <div class="flex justify-end">
+            <button class="text-red-500" onclick="closeModal()">Close</button>
         </div>
+        <div id="registrationDetails" class="mt-4"></div>
+    </div>
+</div>
+
     </div>
 
     <script>
