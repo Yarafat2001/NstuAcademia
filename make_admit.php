@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 include 'connection.php'; // This file should set up the $conn connection
 
 // Ensure the student is logged in
@@ -23,80 +25,188 @@ if ($result->num_rows === 0) {
 
 $student = $result->fetch_assoc();
 $stmt->close();
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Admit Card</title>
-    <!-- Include Tailwind CSS from CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Additional custom styling (optional) */
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+
         .admit-card {
             max-width: 800px;
             margin: 2rem auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             overflow: hidden;
+            background-color: white;
         }
+
         .header-bg {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
         .footer-bg {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 1rem;
         }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
         .instruction-card {
             background: #f9fafb;
             border-radius: 10px;
             padding: 1.5rem;
             margin-top: 1.5rem;
         }
+
         .instruction-card ul {
             padding-left: 1.5rem;
         }
+
         .instruction-card li {
             margin-bottom: 0.5rem;
         }
+
+        /* Student & Exam Details */
+        .content {
+            padding: 2rem;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .student-info div {
+            font-size: 1rem;
+            color: #4b5563;
+        }
+
+        .student-info span {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .student-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .subheader {
+            font-size: 1.2rem;
+            color: #6b7280;
+        }
+
+        /* Instructions */
+        .instructions h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .instructions ul {
+            padding-left: 1.5rem;
+        }
+
+        .instructions li {
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Button */
+        .logout-btn {
+            background-color: #00fffc;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            margin-top: 1rem;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #00b8b8;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
-<body class="bg-gray-100 p-6">
-    <div class="admit-card bg-white">
+
+<body>
+
+    <div class="admit-card">
+
         <!-- Header Section -->
-        <div class="header-bg text-white p-8 flex justify-between items-center">
+        <div class="header-bg">
             <div>
-                <h1 class="text-4xl font-bold">Admit Card</h1>
-                <p class="mt-1 text-lg">Examination 2025</p>
+                <h1 class="header">Admit Card</h1>
+                <p class="subheader">Examination 2025</p>
             </div>
+
             <div>
                 <?php if (!empty($student['stu_img'])): ?>
-                    <img src="<?php echo htmlspecialchars($student['stu_img']); ?>" alt="Student Photo" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
+                    <img src="<?php echo htmlspecialchars($student['stu_img']); ?>" alt="Student Photo" class="profile-image">
                 <?php else: ?>
-                    <img src="default_student.png" alt="Default Student Photo" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
+                    <img src="default_student.png" alt="Default Student Photo" class="profile-image">
                 <?php endif; ?>
             </div>
         </div>
+
         <!-- Student & Exam Details -->
-        <div class="p-8">
-            <div class="mb-8">
-                <h2 class="text-2xl font-semibold mb-6 text-gray-800">Student Information</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-3">
-                        <p><span class="font-bold text-gray-700">Name:</span> <span class="text-gray-600"><?php echo htmlspecialchars($student['studentName']); ?></span></p>
-                        <p><span class="font-bold text-gray-700">Student ID:</span> <span class="text-gray-600"><?php echo htmlspecialchars($student['studentId']); ?></span></p>
-                        <p><span class="font-bold text-gray-700">Department:</span> <span class="text-gray-600"><?php echo htmlspecialchars($student['department']); ?></span></p>
-                    </div>
-                    <div class="space-y-3">
-                        <p><span class="font-bold text-gray-700">Session:</span> <span class="text-gray-600"><?php echo htmlspecialchars($student['session_year']); ?></span></p>
-                        <p><span class="font-bold text-gray-700">Exam Date:</span> <span class="text-gray-600">October 15, 2025</span></p>
-                        <p><span class="font-bold text-gray-700">Exam Center:</span> <span class="text-gray-600">Main Campus, Hall 3</span></p>
-                    </div>
+        <div class="content">
+            <div class="student-info">
+                <div>
+                    <p><span>Name:</span> <?php echo htmlspecialchars($student['studentName']); ?></p>
+                    <p><span>Student ID:</span> <?php echo htmlspecialchars($student['studentId']); ?></p>
+                    <p><span>Department:</span> <?php echo htmlspecialchars($student['department']); ?></p>
+                </div>
+
+                <div>
+                    <p><span>Session:</span> <?php echo htmlspecialchars($student['session_year']); ?></p>
+                    <p><span>Exam Date:</span> October 15, 2025</p>
+                    <p><span>Exam Center:</span> Main Campus, Hall 3</p>
                 </div>
             </div>
+
             <!-- Instructions -->
-            <div class="instruction-card">
-                <h3 class="text-xl font-semibold mb-4 text-gray-800">Instructions:</h3>
-                <ul class="list-disc list-inside text-gray-700">
+            <div class="instruction-card instructions">
+                <h3>Instructions:</h3>
+                <ul>
                     <li>Bring a valid photo ID along with this admit card.</li>
                     <li>Arrive at the exam center at least 30 minutes before the scheduled time.</li>
                     <li>Switch off all mobile phones and electronic devices.</li>
@@ -104,10 +214,14 @@ $stmt->close();
                 </ul>
             </div>
         </div>
+
         <!-- Footer (Optional) -->
-        <div class="footer-bg p-4 text-center text-sm text-white">
-            <p>Powered by Your Institution Name</p>
+        <div class="footer-bg">
+            <p>Powered by NSTU Exam Controller</p>
         </div>
+
     </div>
+
 </body>
+
 </html>

@@ -1,0 +1,11 @@
+{
+    "poppins": {
+        "normal": "C:\\xampp\\htdocs\\pc\\NSTU_Academia\\vendor\\dompdf\\dompdf\/lib\/fonts\/poppins_normal_12f61e1aca2bd22472c17cf0465b304e",
+        "600": "poppins_600_a68d0fa714114c7ef3a2a04bbe8fda45"
+    },
+    "roboto": {
+        "300": "C:\\xampp\\htdocs\\pc\\NSTU_Academia\\vendor\\dompdf\\dompdf\/lib\/fonts\/roboto_300_7f0f040993bb35f67d8431439cbf7385",
+        "normal": "C:\\xampp\\htdocs\\pc\\NSTU_Academia\\vendor\\dompdf\\dompdf\/lib\/fonts\/roboto_normal_744a525d3dfcb8e50d148956703b6b68",
+        "500": "roboto_500_41ea8fd5770bc278dbd15851922ff806"
+    }
+}
