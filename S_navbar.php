@@ -213,8 +213,8 @@ $name = $_SESSION['name'] ?? 'User'; // Use a proper name if available
                         <li><a href="IssueBoardingCard.php" class="nav-link" data-id="issue-boarding-card"><i class="fas fa-id-card mr-2"></i>Issue Boarding Card</a></li>
                         <li><a href="About.php" class="nav-link" data-id="about"><i class="fas fa-info-circle mr-2"></i>About</a></li>
                     <?php elseif ($role === 'department_head'): ?>
-                        <li><a href="director_dashboard.php" class="nav-link" data-id="dashboard"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a></li>
-                        <li><a href="manage_registration.php" class="nav-link" data-id="verify-registrations"><i class="fas fa-check-circle mr-2"></i>Verify Registrations</a></li>
+                        <li><a href="dashboard.php" class="nav-link" data-id="dashboard"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a></li>
+                        <li><a href="./verify_registration_head.php" class="nav-link" data-id="verify-registrations"><i class="fas fa-check-circle mr-2"></i>Verify Registrations</a></li>
                         <li><a href="mark_attendance.php" class="nav-link" data-id="mark-attendance"><i class="fas fa-check-circle mr-2"></i>Attendance</a></li>
                         <li><a href="departments.php" class="nav-link" data-id="departments"><i class="fas fa-building mr-2"></i>Departments</a></li>
                     <?php endif; ?>

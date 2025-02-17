@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "Signup Successful!";
-        header('Location: login.php');
+        header('Location: login1.php');
         exit();
     } else {
         echo "Error: " . $stmt->error;
